@@ -15,6 +15,10 @@
   --active-route-bg-color: rgba(255, 0, 0, 0.05);
   --foundation-color: rgba(0, 0, 0, 0.9);
   --backdrop-bg-color: rgba(0, 0, 0, 0.5);
+  --card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  --card-hover-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 /* CSS Reset */
@@ -287,6 +291,51 @@ input::placeholder {
 .main-content-container {
   width: 1200px;
   max-width: 1200px;
+}
+
+/* Cards */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-grid.justify-left {
+  justify-content: left;
+}
+
+.card {
+  width: 9.5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--card-box-shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover {
+  box-shadow: var(--card-hover-box-shadow);
+}
+
+.card-info {
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-info span {
+  line-height: 1.5;
+  word-wrap: break-word;
+  max-width: 90%;
+}
+
+.card-info img {
+  width: 2.5rem;
+  margin: 0.2rem 0 0.6rem;
 }
 
 @media screen and (max-width: 600px) {

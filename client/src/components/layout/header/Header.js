@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from './SearchBar';
 import logo from '../../../logo.png';
 
 const Header = () => {
@@ -11,6 +12,7 @@ const Header = () => {
         <img src={logo} alt='logo' className='logo-img' />
         <span className='logo-name'>Central Banks</span>
       </div>
+      <SearchBar />
       <div style={{ flex: 1 }}></div>
       <button className='icon-btn view-mode-btn'>
         <i className='material-icons-outlined'>view_agenda</i>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../logo.png';
 import flag from './bahamas.png';
 
 const Menu = () => {
+  const { pathname } = useLocation();
+
   return (
     <aside>
       <nav className='side-menu'>
@@ -12,40 +15,70 @@ const Menu = () => {
         </div>
         <ul className='routes'>
           <li>
-            <div className='active'>
-              <i className='material-icons-outlined'>storage</i>
-              <span>Home</span>
-            </div>
+            <Link to='/'>
+              <div className={pathname === '/' ? 'active' : undefined}>
+                <i className='material-icons-outlined'>storage</i>
+                <span>Home</span>
+              </div>
+            </Link>
           </li>
           <li>
-            <div>
-              <i className='material-icons-outlined'>account_balance</i>
-              <span>Central Banks</span>
-            </div>
+            <Link to='/central-banks'>
+              <div
+                className={pathname === '/central-banks' ? 'active' : undefined}
+              >
+                <i className='material-icons-outlined'>account_balance</i>
+                <span>Central Banks</span>
+              </div>
+            </Link>
           </li>
           <li>
-            <div>
-              <i className='material-icons-outlined'>local_atm</i>
-              <span>Fiat Currencies</span>
-            </div>
+            <Link to='/fiat-currencies'>
+              <div
+                className={
+                  pathname.startsWith('/fiat-currencies') ? 'active' : undefined
+                }
+              >
+                <i className='material-icons-outlined'>local_atm</i>
+                <span>Fiat Currencies</span>
+              </div>
+            </Link>
           </li>
           <li>
-            <div>
-              <i className='material-icons-outlined'>monetization_on</i>
-              <span>Cryptocurrencies</span>
-            </div>
+            <Link to='/cryptocurrencies'>
+              <div
+                className={
+                  pathname.startsWith('/cryptocurrencies')
+                    ? 'active'
+                    : undefined
+                }
+              >
+                <i className='material-icons-outlined'>monetization_on</i>
+                <span>Cryptocurrencies</span>
+              </div>
+            </Link>
           </li>
           <li>
-            <div>
-              <i className='material-icons-outlined'>swap_vert_circle</i>
-              <span>Exchanges</span>
-            </div>
+            <Link to='/exchanges'>
+              <div
+                className={
+                  pathname.startsWith('/exchanges') ? 'active' : undefined
+                }
+              >
+                <i className='material-icons-outlined'>swap_vert_circle</i>
+                <span>Exchanges</span>
+              </div>
+            </Link>
           </li>
           <li>
-            <div>
-              <i className='material-icons-outlined'>insert_chart</i>
-              <span>Stock Market</span>
-            </div>
+            <Link to='/stock-market'>
+              <div
+                className={pathname === '/stock-market' ? 'active' : undefined}
+              >
+                <i className='material-icons-outlined'>insert_chart</i>
+                <span>Stock Market</span>
+              </div>
+            </Link>
           </li>
         </ul>
         <div className='subheader'>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import logo from '../../../logo.png';
 
@@ -8,10 +9,10 @@ const Header = () => {
       <button className='icon-btn'>
         <i className='material-icons-outlined'>menu</i>
       </button>
-      <div className='logo-box'>
+      <Link to='/' className='logo-box'>
         <img src={logo} alt='logo' className='logo-img' />
         <span className='logo-name'>Central Banks</span>
-      </div>
+      </Link>
       <SearchBar />
       <div style={{ flex: 1 }}></div>
       <button className='icon-btn view-mode-btn'>

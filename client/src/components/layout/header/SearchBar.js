@@ -32,7 +32,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className={`search-box ${isFocused ? 'focus' : undefined}`}>
+    <div className={`search-box${isFocused ? ' focus' : ''}`}>
       <div className='search-icon-box'>
         <button className='icon-btn' onClick={onClick}>
           <i className='material-icons-outlined'>search</i>

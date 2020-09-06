@@ -5,6 +5,8 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectMenu } from './features/menu/menuSlice';
 import Home from './pages/Home';
 import CentralBanks from './pages/CentralBanks';
 import FiatCurrencies from './pages/FiatCurrencies';
@@ -19,13 +21,18 @@ import Menu from './components/layout/menu/Menu';
 import './App.css';
 
 function App() {
+  const menuOpen = useSelector(selectMenu);
+
   return (
     <Router>
       <Header />
       <Menu />
       <main className='main-content'>
-        <div className='main-spacing-left' />
-        <div className='main-content-body'>
+        <div
+          className='main-spacing-left'
+          style={{ display: menuOpen ? 'block' : 'none' }}
+        />
+        <div className={`main-content-body${menuOpen ? ' justify-left' : ''}`}>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/central-banks' component={CentralBanks} />

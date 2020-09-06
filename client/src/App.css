@@ -14,6 +14,7 @@
   --search-box-bg-color: rgba(0, 0, 0, 0.04);
   --active-route-bg-color: rgba(255, 0, 0, 0.05);
   --foundation-color: rgba(0, 0, 0, 0.9);
+  --backdrop-bg-color: rgba(0, 0, 0, 0.5);
 }
 
 /* CSS Reset */
@@ -90,6 +91,16 @@ input::placeholder {
 .material-icons-outlined {
   font-size: 1.3rem;
   color: var(--text-gray);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  background-color: var(--backdrop-bg-color);
 }
 
 /* Header */
@@ -276,4 +287,14 @@ input::placeholder {
 .main-content-container {
   width: 1200px;
   max-width: 1200px;
+}
+
+@media screen and (max-width: 600px) {
+  .side-menu-backdrop {
+    z-index: 21;
+    width: 100%;
+  }
+  .side-menu {
+    z-index: 22;
+  }
 }

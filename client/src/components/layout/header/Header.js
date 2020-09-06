@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toggleMenu } from '../../../features/menu/menuSlice';
 import SearchBar from './SearchBar';
 import logo from '../../../logo.png';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   return (
     <header className='main-header'>
-      <button className='icon-btn'>
+      <button className='icon-btn' onClick={() => dispatch(toggleMenu())}>
         <i className='material-icons-outlined'>menu</i>
       </button>
       <Link to='/' className='logo-box'>

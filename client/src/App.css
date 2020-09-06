@@ -249,3 +249,31 @@ input::placeholder {
   text-transform: none;
   color: var(--foundation-color);
 }
+
+/* Main Content */
+.main-content {
+  display: flex;
+  margin-top: 4rem;
+}
+
+.main-spacing-left {
+  min-width: 16.5rem;
+}
+
+.main-content-body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+
+.main-content-body.justify-left {
+  justify-content: left;
+}
+
+.main-content-container {
+  width: 1200px;
+  max-width: 1200px;
+}

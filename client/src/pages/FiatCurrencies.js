@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFiatCurrencies,
@@ -10,7 +10,10 @@ const FiatCurrencies = () => {
   const fiatCurrencies = useSelector(selectFiatCurrencies);
   const dispatch = useDispatch();
 
-  if (fiatCurrencies.length === 0) dispatch(fetchFiatCurrencies());
+  useEffect(() => {
+    if (fiatCurrencies.length === 0) dispatch(fetchFiatCurrencies());
+    //eslint-disable-next-line
+  }, []);
 
   return <FiatGrid />;
 };

@@ -17,7 +17,7 @@ const FiatGrid = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className={`card-grid ${menuOpen && 'justify-left'}`}>
+    <div className={`card-grid ${menuOpen ? ' justify-left' : ''}`}>
       {fiatCurrencies.map((fiat, index) => (
         <FiatCard
           key={index}

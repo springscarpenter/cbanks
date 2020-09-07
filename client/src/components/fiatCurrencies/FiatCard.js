@@ -18,18 +18,22 @@ const FiatCard = ({ fiat, rate }) => {
         >
           {symbol && symbol}
         </div>
-        <span>
-          <strong>{currency && currency}</strong>
-        </span>
-        <span>{ISO_code && ISO_code}</span>
-        <span>{state && state}</span>
-        <span>
-          {rate !== -1 &&
-            `USD ${(1 / rate).toLocaleString(undefined, {
+        {currency && (
+          <span>
+            <strong>{currency}</strong>
+          </span>
+        )}
+        {ISO_code && <span>{ISO_code}</span>}
+        {state && <span>{state}</span>}
+        {rate !== -1 && (
+          <span>
+            USD{' '}
+            {(1 / rate).toLocaleString(undefined, {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
-            })}`}
-        </span>
+            })}
+          </span>
+        )}
       </div>
     </div>
   );

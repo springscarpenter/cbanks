@@ -109,6 +109,12 @@ input::placeholder {
   background-color: var(--backdrop-bg-color);
 }
 
+.loader {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 0;
+}
+
 /* Header */
 .main-header {
   position: fixed;

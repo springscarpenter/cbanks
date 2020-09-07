@@ -9,6 +9,7 @@ import {
 import { selectMenu } from '../../features/menu/menuSlice';
 import { Waypoint } from 'react-waypoint';
 import ExchangeCard from './ExchangeCard';
+import Loader from '../utils/Loader';
 
 const ExchangeGrid = () => {
   const exchanges = useSelector(selectExchanges);
@@ -36,7 +37,7 @@ const ExchangeGrid = () => {
           </Fragment>
         ))}
       </div>
-      {loading && <div>Loading...</div>}
+      {loading && <Loader />}
     </div>
   );
 };

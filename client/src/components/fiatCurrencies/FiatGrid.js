@@ -7,6 +7,7 @@ import {
 } from '../../features/fiatCurrencies/fiatCurrenciesSlice';
 import { selectMenu } from '../../features/menu/menuSlice';
 import FiatCard from './FiatCard';
+import Loader from '../utils/Loader';
 
 const FiatGrid = () => {
   const fiatCurrencies = useSelector(selectFiatCurrencies);
@@ -14,7 +15,7 @@ const FiatGrid = () => {
   const loading = useSelector(selectLoading);
   const menuOpen = useSelector(selectMenu);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
 
   return (
     <div className={`card-grid ${menuOpen ? ' justify-left' : ''}`}>

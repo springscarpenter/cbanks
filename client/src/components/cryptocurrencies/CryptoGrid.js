@@ -9,6 +9,7 @@ import {
 import { selectMenu } from '../../features/menu/menuSlice';
 import { Waypoint } from 'react-waypoint';
 import CryptoCard from './CryptoCard';
+import Loader from '../utils/Loader';
 
 const CryptoGrid = () => {
   const cryptocurrencies = useSelector(selectCryptocurrencies);
@@ -36,7 +37,7 @@ const CryptoGrid = () => {
           </Fragment>
         ))}
       </div>
-      {loading && <div>Loading...</div>}
+      {loading && <Loader />}
     </div>
   );
 };

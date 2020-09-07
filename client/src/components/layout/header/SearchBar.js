@@ -10,8 +10,7 @@ const SearchBar = () => {
   };
 
   const validateInput = (input) => {
-    if (input == null) return false;
-    return input.length >= 3;
+    return input && input.length >= 3 ? true : false;
   };
 
   const onClick = () => {

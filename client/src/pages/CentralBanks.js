@@ -5,10 +5,13 @@ import {
   fetchBankList,
   setLoading,
 } from '../features/banks/banksSlice';
+import { selectView } from '../features/view/viewSlice';
 import BankGrid from '../components/banks/BankGrid';
+import BankTable from '../components/banks/BankTable';
 
 const CentralBanks = () => {
   const banks = useSelector(selectBanks);
+  const gridView = useSelector(selectView);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +20,7 @@ const CentralBanks = () => {
     //eslint-disable-next-line
   }, []);
 
-  return <BankGrid />;
+  return gridView ? <BankGrid /> : <BankTable />;
 };
 
 export default CentralBanks;

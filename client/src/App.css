@@ -505,6 +505,10 @@ input::placeholder {
   max-width: 900px;
 }
 
+.lg-chart {
+  max-width: 1200px;
+}
+
 .chart-buttons {
   margin-top: 2rem;
   display: flex;
@@ -572,6 +576,22 @@ input::placeholder {
 
 .main-table td.table-waypoint {
   padding: 0;
+}
+
+.lg-table {
+  max-width: 1200px;
+}
+
+.lg-table td {
+  max-width: 10rem;
+}
+
+.lg-table .table-img-link {
+  font-weight: 500;
+}
+
+.lg-table .table-img-link img {
+  width: 1.5rem;
 }
 
 @media screen and (max-width: 600px) {

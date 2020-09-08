@@ -429,6 +429,13 @@ input::placeholder {
   max-height: 100%;
 }
 
+.fiat-profile-symbol {
+  color: #fff;
+  background-color: #212529;
+  border-radius: 1rem;
+  font-size: 5rem;
+}
+
 .profile-desc {
   display: block;
 }
@@ -549,7 +556,8 @@ input::placeholder {
   align-items: center;
 }
 
-.table-img-link img {
+.table-img-link img,
+.table-fiat-symbol {
   width: 1.2rem;
   margin-right: 0.4rem;
   align-self: center;

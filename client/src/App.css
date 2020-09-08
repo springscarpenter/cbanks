@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+/* Custom Properties */
+:root {
+  --main-bg-color: #fff;
+  --text-primary-color: #212529;
+  --text-secondary-color: rgba(255, 0, 0, 0.8);
+  --darkmode-text-primary-color: #fff;
+  --text-gray: rgba(0, 0, 0, 0.8);
+  --hover-bg-gray: rgba(0, 0, 0, 0.05);
+  --header-border: 1px solid rgba(0, 0, 0, 0.1);
+  --header-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  --search-box-bg-color: rgba(0, 0, 0, 0.04);
+  --active-route-bg-color: rgba(255, 0, 0, 0.05);
+  --foundation-color: rgba(0, 0, 0, 0.9);
+  --backdrop-bg-color: rgba(0, 0, 0, 0.5);
+  --card-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  --card-hover-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+  --fiat-symbol-bg-color: #212529;
+}
+
+/* CSS Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  color: var(--text-primary-color);
+  background-color: var(--main-bg-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-primary-color);
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font: inherit;
+}
+
+a:hover,
+button:hover {
+  opacity: 0.95;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  font-size: 0.9rem;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: transparent;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Utils */
+.icon-btn {
+  display: grid;
+  place-items: center;
+  padding: 0.65rem;
+  border-radius: 50%;
+  transition: background 0.8s;
+}
+
+.icon-btn:hover {
+  background: var(--hover-bg-gray);
+}
+
+.material-icons-outlined {
+  font-size: 1.3rem;
+  color: var(--text-gray);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 30;
+  background-color: var(--backdrop-bg-color);
+}
+
+.loader {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+/* Header */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  border-bottom: var(--header-border);
+  padding: 0 1rem;
+  background-color: var(--main-bg-color);
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  margin: 0 3.5rem 0 0.5rem;
+  margin: 0 2rem 0 0.5rem;
+}
+
+.logo-img {
+  width: 2.8rem;
+  margin-right: 0.3rem;
+}
+
+.logo-name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--text-gray);
+}
+
+.view-mode-btn {
+  margin: 0 0.2rem;
+}
+
+/* Search Bar */
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 40rem;
+  padding-right: 0.5rem;
+  background-color: var(--search-box-bg-color);
+  border-radius: 0.5rem;
+}
+
+.search-box.focus {
+  background-color: transparent;
+  box-shadow: var(--header-box-shadow);
+}
+
+.search-icon-box {
+  display: grid;
+  place-items: center;
+  padding: 0.2rem;
+}
+
+.search-field {
+  padding: 0.5rem 0;
+}
+
+/* Side Menu */
+.side-menu-backdrop {
+  z-index: 18;
+  width: 0;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 19;
+  width: 16.5rem;
+  height: 100vh;
+  padding-bottom: 1rem;
+  background-color: var(--main-bg-color);
+  overflow-y: scroll;
+}
+
+.side-menu a {
+  outline: none;
+}
+
+.side-menu > *:last-child {
+  margin-bottom: 1rem;
+}
+
+.side-menu .logo-box {
+  height: 4rem;
+  padding: 0 1.65rem;
+  border-bottom: var(--header-border);
+  margin: 0 0 0.6rem 0;
+}
+
+.side-menu .logo-img {
+  width: 2rem;
+}
+
+.side-menu li div,
+.side-menu .subheader {
+  padding: 0.6rem 1.65rem;
+  margin-right: 0.3rem;
+}
+
+.side-menu li div:hover {
+  background-color: var(--hover-bg-gray);
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+}
+
+.side-menu .routes div.active {
+  background-color: var(--active-route-bg-color);
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+}
+
+.side-menu .routes div.active > * {
+  color: var(--text-secondary-color);
+  font-weight: bold;
+}
+
+.side-menu li div {
+  display: flex;
+  align-items: center;
+}
+
+.side-menu li span,
+.side-menu .subheader {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-gray);
+}
+
+.side-menu .subheader {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.side-menu li i,
+.side-menu li .menu-flag {
+  margin-right: 1.5rem;
+}
+
+.side-menu li button {
+  width: 100%;
+}
+
+.side-menu .menu-flag {
+  width: 1.3rem;
+}
+
+.side-menu .foundation {
+  text-transform: none;
+  color: var(--foundation-color);
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  margin-top: 4rem;
+}
+
+.main-spacing-left {
+  min-width: 16.5rem;
+}
+
+.main-content-body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+
+.main-content-body.justify-left {
+  justify-content: left;
+}
+
+.main-content-container {
+  width: 1200px;
+  max-width: 1200px;
+}
+
+/* Site Description */
+.site-description {
+  margin: 0.5rem 0 1.5rem 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  font-weight: 500;
+  color: var(--text-gray);
+}
+
+/* Cards */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-grid.justify-left {
+  justify-content: left;
+}
+
+.card {
+  width: 9.5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--card-box-shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover {
+  box-shadow: var(--card-hover-box-shadow);
+}
+
+.card-info {
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-info span {
+  line-height: 1.5;
+  word-wrap: break-word;
+  max-width: 90%;
+}
+
+.card-info img,
+.fiat-symbol {
+  width: 2.5rem;
+  margin: 0.2rem 0 0.6rem;
+}
+
+.fiat-symbol {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  padding: 0.1rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0.2rem 0 0.6rem;
+  border-width: 3px;
+  border-style: solid;
+  background-color: var(--fiat-symbol-bg-color);
+  color: var(--darkmode-text-primary-color);
+}
+
+/* Search */
+.search-grid .card-grid {
+  justify-content: left;
+}
+
+.search-title {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.search-title i {
+  margin: 0 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .side-menu-backdrop {
+    z-index: 21;
+    width: 100%;
+  }
+  .side-menu {
+    z-index: 22;
+  }
+}

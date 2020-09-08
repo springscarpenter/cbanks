@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import menuReducer from '../features/menu/menuSlice';
 import viewReducer from '../features/view/viewSlice';
+import themeReducer from '../features/theme/themeSlice';
 import searchReducer from '../features/search/searchSlice';
 import banksReducer from '../features/banks/banksSlice';
 import fiatCurrenciesReducer from '../features/fiatCurrencies/fiatCurrenciesSlice';
@@ -15,6 +16,7 @@ export default configureStore({
   reducer: {
     menu: menuReducer,
     view: viewReducer,
+    theme: themeReducer,
     search: searchReducer,
     banks: banksReducer,
     fiatCurrencies: fiatCurrenciesReducer,

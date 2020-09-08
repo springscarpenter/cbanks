@@ -4,6 +4,7 @@ import {
   selectCryptoChart,
   selectCryptoChartRange,
 } from '../../features/cryptocurrency/cryptocurrencySlice';
+import { selectTheme } from '../../features/theme/themeSlice';
 import Chart from 'chart.js';
 
 const vw = Math.max(
@@ -15,6 +16,7 @@ const isMobile = vw < 600;
 const CryptoChart = () => {
   const chart = useSelector(selectCryptoChart);
   const range = useSelector(selectCryptoChartRange);
+  const darkMode = useSelector(selectTheme);
   const chartCanvas = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
 
@@ -35,7 +37,7 @@ const CryptoChart = () => {
             borderWidth: 1.5,
           },
           {
-            type: 'bar',
+            type: darkMode ? 'line' : 'bar',
             label: 'Volume',
             yAxisID: 'Volume',
             backgroundColor: '#2fcbaf',
@@ -161,6 +163,14 @@ const CryptoChart = () => {
     }
     //eslint-disable-next-line
   }, [chart]);
+
+  useEffect(() => {
+    if (chartInstance) {
+      chartInstance.data.datasets[1].type = darkMode ? 'line' : 'bar';
+      chartInstance.update();
+    }
+    //eslint-disable-next-line
+  }, [darkMode]);
 
   return (
     <div className='chart'>

@@ -19,6 +19,7 @@ import StockMarket from './pages/StockMarket';
 import Header from './components/layout/header/Header';
 import Menu from './components/layout/menu/Menu';
 import { initData } from './features/search/searchSlice';
+import Disclaimer from './components/utils/Disclaimer';
 import './App.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <Router>
+      <Disclaimer />
       <Header />
       <Menu />
       <main className='main-content'>

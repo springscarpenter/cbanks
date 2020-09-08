@@ -4,15 +4,18 @@
 /* Custom Properties */
 :root {
   --main-bg-color: #fff;
+  --darkmode-bg-color: #212121;
   --text-primary-color: #212529;
   --text-secondary-color: rgba(255, 0, 0, 0.8);
   --darkmode-text-primary-color: #fff;
   --text-gray: rgba(0, 0, 0, 0.8);
   --hover-bg-gray: rgba(0, 0, 0, 0.05);
+  --header-darkmode-bg-color: #121212;
   --header-border: 1px solid rgba(0, 0, 0, 0.1);
   --header-box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   --search-box-bg-color: rgba(0, 0, 0, 0.04);
+  --darkmode-search-box-bg-color: #181818;
   --active-route-bg-color: rgba(255, 0, 0, 0.05);
   --foundation-color: rgba(0, 0, 0, 0.9);
   --backdrop-bg-color: rgba(0, 0, 0, 0.5);
@@ -21,6 +24,7 @@
   --card-hover-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.22);
   --fiat-symbol-bg-color: #212529;
+  --darkmode-table-border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* CSS Reset */
@@ -828,5 +832,69 @@ input::placeholder {
   .main-table td,
   .lg-table td {
     max-width: 5rem;
+  }
+}
+
+/* Dark Mode */
+body.darkmode,
+.darkmode .main-header,
+.darkmode .logo-name,
+.darkmode .search-field,
+.darkmode .side-menu,
+.darkmode .material-icons-outlined,
+.darkmode a,
+.darkmode .side-menu li span,
+.darkmode .side-menu .subheader,
+.darkmode .site-description,
+.darkmode .stock-input,
+.darkmode .chart-buttons button {
+  color: var(--darkmode-text-primary-color);
+}
+
+.darkmode .main-header {
+  background-color: var(--header-darkmode-bg-color);
+  border-bottom-color: var(--header-darkmode-bg-color);
+}
+
+body.darkmode,
+.darkmode .side-menu {
+  background-color: var(--darkmode-bg-color);
+}
+
+.darkmode .icon-btn:hover {
+  background: none;
+}
+
+.darkmode .search-box {
+  background-color: var(--darkmode-search-box-bg-color);
+}
+
+.darkmode .side-menu .logo-box {
+  border-bottom-color: var(--darkmode-table-border-color);
+}
+
+.darkmode .side-menu li div:hover,
+.darkmode .chart-buttons button {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.darkmode .chart-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.darkmode .chart-buttons button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.darkmode .main-table tr {
+  border-bottom-color: var(--darkmode-table-border-color);
+}
+
+@media screen and (max-width: 600px) {
+  .darkmode .main-header {
+    background-color: var(--darkmode-bg-color);
+  }
+  .darkmode .search-box {
+    background-color: transparent;
   }
 }

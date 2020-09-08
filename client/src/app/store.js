@@ -3,6 +3,7 @@ import menuReducer from '../features/menu/menuSlice';
 import searchReducer from '../features/search/searchSlice';
 import banksReducer from '../features/banks/banksSlice';
 import fiatCurrenciesReducer from '../features/fiatCurrencies/fiatCurrenciesSlice';
+import fiatCurrencyReducer from '../features/fiatCurrency/fiatCurrencySlice';
 import cryptocurrenciesReducer from '../features/cryptocurrencies/cryptocurrenciesSlice';
 import cryptocurrencyReducer from '../features/cryptocurrency/cryptocurrencySlice';
 import exchangesReducer from '../features/exchanges/exchangesSlice';
@@ -14,6 +15,7 @@ export default configureStore({
     search: searchReducer,
     banks: banksReducer,
     fiatCurrencies: fiatCurrenciesReducer,
+    fiatCurrency: fiatCurrencyReducer,
     cryptocurrencies: cryptocurrenciesReducer,
     cryptocurrency: cryptocurrencyReducer,
     exchanges: exchangesReducer,

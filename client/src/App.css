@@ -594,6 +594,10 @@ input::placeholder {
   width: 1.5rem;
 }
 
+.lg-table .table-fiat-symbol {
+  width: 2rem;
+}
+
 @media screen and (max-width: 600px) {
   .side-menu-backdrop {
     z-index: 21;

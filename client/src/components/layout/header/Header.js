@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toggleMenu } from '../../../features/menu/menuSlice';
+import { toggleView, selectView } from '../../../features/view/viewSlice';
 import SearchBar from './SearchBar';
 import logo from '../../../logo.png';
 
 const Header = () => {
+  const gridView = useSelector(selectView);
   const dispatch = useDispatch();
 
   return (
@@ -19,8 +21,16 @@ const Header = () => {
       </Link>
       <SearchBar />
       <div style={{ flex: 1 }}></div>
-      <button className='icon-btn view-mode-btn'>
-        <i className='material-icons-outlined'>view_agenda</i>
+      <button
+        className='icon-btn view-mode-btn'
+        onClick={() => dispatch(toggleView())}
+        title={gridView ? 'List View' : 'Grid View'}
+      >
+        {gridView ? (
+          <i className='material-icons-outlined'>view_agenda</i>
+        ) : (
+          <i className='material-icons-outlined'>dashboard</i>
+        )}
       </button>
       <button className='icon-btn dark-mode-btn'>
         <i className='material-icons-outlined'>brightness_5</i>

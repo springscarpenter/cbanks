@@ -405,13 +405,20 @@ input::placeholder {
   margin-bottom: 1rem;
 }
 
-.profile h1 {
+.profile h1,
+.stock-input {
   font-size: 1.8rem;
   font-weight: bold;
   word-wrap: break-word;
 }
 
-.profile h3 {
+.stock-input {
+  padding: 0;
+  width: 7rem;
+}
+
+.profile h3,
+.stock-symbol a {
   font-size: 1.2rem;
   font-weight: normal;
 }

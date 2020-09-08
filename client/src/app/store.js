@@ -8,6 +8,7 @@ import cryptocurrenciesReducer from '../features/cryptocurrencies/cryptocurrenci
 import cryptocurrencyReducer from '../features/cryptocurrency/cryptocurrencySlice';
 import exchangesReducer from '../features/exchanges/exchangesSlice';
 import exchangeReducer from '../features/exchange/exchangeSlice';
+import stockReducer from '../features/stock/stockSlice';
 
 export default configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export default configureStore({
     cryptocurrency: cryptocurrencyReducer,
     exchanges: exchangesReducer,
     exchange: exchangeReducer,
+    stock: stockReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

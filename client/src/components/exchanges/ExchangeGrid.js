@@ -26,14 +26,14 @@ const ExchangeGrid = () => {
         {exchanges.map((exchange, index) => (
           <Fragment key={index}>
             <ExchangeCard key={index} exchange={exchange}></ExchangeCard>
-            {hasMore && index === exchanges.length - 50 ? (
+            {hasMore && index === exchanges.length - 50 && (
               <Waypoint
                 onEnter={() => {
                   dispatch(fetchExchanges(page + 1));
                   setPage(page + 1);
                 }}
               />
-            ) : undefined}
+            )}
           </Fragment>
         ))}
       </div>

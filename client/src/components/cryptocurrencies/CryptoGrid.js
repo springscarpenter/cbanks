@@ -26,14 +26,14 @@ const CryptoGrid = () => {
         {cryptocurrencies.map((crypto, index) => (
           <Fragment key={index}>
             <CryptoCard key={index} crypto={crypto}></CryptoCard>
-            {hasMore && index === cryptocurrencies.length - 50 ? (
+            {hasMore && index === cryptocurrencies.length - 50 && (
               <Waypoint
                 onEnter={() => {
                   dispatch(fetchCryptocurrencies(page + 1));
                   setPage(page + 1);
                 }}
               />
-            ) : undefined}
+            )}
           </Fragment>
         ))}
       </div>

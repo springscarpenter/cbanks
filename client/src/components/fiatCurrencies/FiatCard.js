@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const FiatCard = ({ fiat, rate }) => {
+const FiatCard = ({ fiat, rate, rateDefault }) => {
   const { state, currency, symbol, ISO_code } = fiat;
   const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
   const card = (
@@ -18,26 +19,24 @@ const FiatCard = ({ fiat, rate }) => {
         >
           {symbol && symbol}
         </div>
-        {currency && (
-          <span>
-            <strong>{currency}</strong>
-          </span>
-        )}
-        {ISO_code && <span>{ISO_code}</span>}
-        {state && <span>{state}</span>}
-        {rate !== -1 && (
-          <span>
-            USD{' '}
-            {(1 / rate).toLocaleString(undefined, {
+        <span>
+          <strong>{currency && currency}</strong>
+        </span>
+        <span>{ISO_code && ISO_code}</span>
+        <span>{state && state}</span>
+        <span style={{ fontWeight: rateDefault !== -1 ? 500 : 'normal' }}>
+          {rate !== -1 &&
+            `USD ${(1 / rate).toLocaleString(undefined, {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
-            })}
-          </span>
-        )}
+            })}`}
+        </span>
       </div>
     </div>
   );
-  return (
+  return rateDefault !== -1 ? (
+    <Link to={`/fiat-currencies/${ISO_code}`}>{card}</Link>
+  ) : (
     <a
       href={`https://en.wikipedia.org/wiki/${currency.split(' ').join('_')}`}
       target='_blank'
@@ -51,6 +50,7 @@ const FiatCard = ({ fiat, rate }) => {
 FiatCard.propTypes = {
   fiat: PropTypes.object.isRequired,
   rate: PropTypes.number.isRequired,
+  rateDefault: PropTypes.number.isRequired,
 };
 
 export default FiatCard;

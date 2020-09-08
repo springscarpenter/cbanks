@@ -13,19 +13,15 @@ const BankCard = ({ bank }) => {
       rel='noopener noreferrer'
     >
       <div className='card'>
-        {country && (
-          <p className='ranking'>
-            <strong>{country[0].toUpperCase()}</strong>
-          </p>
-        )}
+        <p className='ranking'>
+          <strong>{country && country[0].toUpperCase()}</strong>
+        </p>
         <div className='card-info'>
-          {image && <img src={image} alt='' />}
-          {central_bank && (
-            <span>
-              <strong>{central_bank}</strong>
-            </span>
-          )}
-          {country && <span>{country}</span>}
+          <img src={image && image} alt='' />
+          <span>
+            <strong>{central_bank && central_bank}</strong>
+          </span>
+          <span>{country && country}</span>
         </div>
       </div>
     </a>

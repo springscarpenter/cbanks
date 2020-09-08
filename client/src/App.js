@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectMenu } from './features/menu/menuSlice';
 import Home from './pages/Home';
 import CentralBanks from './pages/CentralBanks';
@@ -18,10 +18,16 @@ import Exchange from './pages/Exchange';
 import StockMarket from './pages/StockMarket';
 import Header from './components/layout/header/Header';
 import Menu from './components/layout/menu/Menu';
+import { initData } from './features/search/searchSlice';
 import './App.css';
 
 function App() {
   const menuOpen = useSelector(selectMenu);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initData());
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <Router>

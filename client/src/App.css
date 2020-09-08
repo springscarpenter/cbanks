@@ -301,6 +301,16 @@ input::placeholder {
   max-width: 1200px;
 }
 
+/* Site Description */
+.site-description {
+  margin: 0.5rem 0 1.5rem 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  font-weight: 500;
+  color: var(--text-gray);
+}
+
 /* Cards */
 .card-grid {
   display: flex;
@@ -361,6 +371,21 @@ input::placeholder {
   border-style: solid;
   background-color: var(--fiat-symbol-bg-color);
   color: var(--darkmode-text-primary-color);
+}
+
+/* Search */
+.search-grid .card-grid {
+  justify-content: left;
+}
+
+.search-title {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.search-title i {
+  margin: 0 0.5rem;
 }
 
 @media screen and (max-width: 600px) {

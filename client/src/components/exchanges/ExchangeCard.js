@@ -15,19 +15,15 @@ const ExchangeCard = ({ exchange }) => {
   return (
     <Link to={`/exchanges/${id}`}>
       <div className='card'>
-        {trust_score_rank && (
-          <p className='ranking'>
-            <strong>#{trust_score_rank}</strong>
-          </p>
-        )}
+        <p className='ranking'>
+          <strong>#{trust_score_rank && trust_score_rank}</strong>
+        </p>
         <div className='card-info'>
-          {image && <img src={image} alt='' />}
-          {name && (
-            <span>
-              <strong>{name}</strong>
-            </span>
-          )}
-          {country && <span>{country}</span>}
+          <img src={image && image} alt='' />
+          <span>
+            <strong>{name && name}</strong>
+          </span>
+          <span>{country && country}</span>
           {trade_volume_24h_btc && (
             <span>
               {trade_volume_24h_btc.toLocaleString(undefined, {

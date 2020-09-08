@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { selectRatesDefault } from '../../features/search/searchSlice';
 import {
   selectFiatCurrencies,
   selectRates,
@@ -12,6 +13,7 @@ import Loader from '../utils/Loader';
 const FiatGrid = () => {
   const fiatCurrencies = useSelector(selectFiatCurrencies);
   const rates = useSelector(selectRates);
+  const ratesDefault = useSelector(selectRatesDefault);
   const loading = useSelector(selectLoading);
   const menuOpen = useSelector(selectMenu);
 
@@ -24,6 +26,7 @@ const FiatGrid = () => {
           key={index}
           fiat={fiat}
           rate={rates ? rates[fiat.ISO_code] || -1 : -1}
+          rateDefault={ratesDefault ? ratesDefault[fiat.ISO_code] || -1 : -1}
         ></FiatCard>
       ))}
     </div>

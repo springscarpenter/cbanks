@@ -6,6 +6,7 @@ import fiatCurrenciesReducer from '../features/fiatCurrencies/fiatCurrenciesSlic
 import cryptocurrenciesReducer from '../features/cryptocurrencies/cryptocurrenciesSlice';
 import cryptocurrencyReducer from '../features/cryptocurrency/cryptocurrencySlice';
 import exchangesReducer from '../features/exchanges/exchangesSlice';
+import exchangeReducer from '../features/exchange/exchangeSlice';
 
 export default configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export default configureStore({
     cryptocurrencies: cryptocurrenciesReducer,
     cryptocurrency: cryptocurrencyReducer,
     exchanges: exchangesReducer,
+    exchange: exchangeReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

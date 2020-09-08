@@ -462,7 +462,8 @@ input::placeholder {
 }
 
 /* Current price */
-.current-price {
+.current-price,
+.trade-volume {
   margin: 1rem 0 2rem;
   font-size: 1.5rem;
 }

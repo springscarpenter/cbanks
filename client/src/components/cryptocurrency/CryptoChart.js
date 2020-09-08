@@ -19,7 +19,6 @@ const CryptoChart = () => {
   const [chartInstance, setChartInstance] = useState(null);
 
   useEffect(() => {
-    // if (chartCanvas && chartCanvas.current) {
     const newChartInstance = new Chart(chartCanvas.current, {
       type: 'line',
       data: {
@@ -147,7 +146,6 @@ const CryptoChart = () => {
       },
     });
     setChartInstance(newChartInstance);
-    // }
     //eslint-disable-next-line
   }, [chartCanvas]);
 

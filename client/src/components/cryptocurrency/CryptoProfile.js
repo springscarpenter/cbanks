@@ -32,7 +32,7 @@ const CryptoProfile = () => {
       </div>
       {description && (
         <p className='profile-desc'>
-          {description.replace(/(<a.*?>)|(<\/a>)|\\r|\\n|\\t/gi, '').length <
+          {description.replace(/(<a.*?>)|(<\/a>)|\\r|\\n|\\t/gi, '').length <=
           250
             ? description
                 .replace(/(<a.*?>)|(<\/a>)|\\r|\\n|\\t/gi, '')

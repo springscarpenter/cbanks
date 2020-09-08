@@ -4,10 +4,13 @@ import {
   selectCryptocurrencies,
   fetchCryptocurrencies,
 } from '../features/cryptocurrencies/cryptocurrenciesSlice';
+import { selectView } from '../features/view/viewSlice';
 import CryptoGrid from '../components/cryptocurrencies/CryptoGrid';
+import CryptoTable from '../components/cryptocurrencies/CryptoTable';
 
 const Cryptocurrencies = () => {
   const cryptocurrencies = useSelector(selectCryptocurrencies);
+  const gridView = useSelector(selectView);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +18,7 @@ const Cryptocurrencies = () => {
     //eslint-disable-next-line
   }, []);
 
-  return <CryptoGrid />;
+  return gridView ? <CryptoGrid /> : <CryptoTable />;
 };
 
 export default Cryptocurrencies;

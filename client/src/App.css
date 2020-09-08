@@ -388,6 +388,177 @@ input::placeholder {
   margin: 0 0.5rem;
 }
 
+/* Details */
+.details {
+  display: flex;
+  line-height: 1.5;
+  margin: 0.5rem;
+}
+
+/* Profile */
+.profile {
+  width: 20rem;
+  margin-right: 3rem;
+}
+
+.profile > * {
+  margin-bottom: 1rem;
+}
+
+.profile h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+.profile h3 {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.profile-img {
+  width: 12rem;
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.profile-desc {
+  display: block;
+}
+
+.rank-badge {
+  line-height: 1;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.profile-link {
+  margin-bottom: 0.3rem;
+}
+
+.profile-link a {
+  margin-left: 0.5rem;
+}
+
+/* Market data */
+.market-data {
+  width: 100%;
+}
+
+.market-data span {
+  display: block;
+}
+
+/* Current price */
+.current-price,
+.trade-volume {
+  margin: 1rem 0 2rem;
+  font-size: 1.5rem;
+}
+
+.current-price span:first-child {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+/* Market Overview */
+.market-overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.market-overview span:first-child {
+  font-weight: bold;
+}
+
+/* Chart */
+.chart {
+  margin: 2rem 0;
+  max-width: 900px;
+}
+
+.chart-buttons {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.chart-buttons button {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-right: 0.4rem;
+  border-radius: 0.2rem;
+}
+
+.chart-buttons button:last-of-type {
+  margin-right: 0;
+}
+
+.chart-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.chart-buttons button.active {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+}
+
+/* Table */
+.main-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+}
+
+.main-table th,
+.main-table td {
+  text-align: left;
+  font-size: 0.95rem;
+  padding: 0.8rem;
+}
+
+.main-table tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.main-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.main-table td {
+  max-width: 8rem;
+  word-wrap: break-word;
+}
+
+.table-img-link {
+  display: flex;
+  align-items: center;
+}
+
+.table-img-link img {
+  width: 1.2rem;
+  margin-right: 0.4rem;
+  align-self: center;
+}
+
+.main-table td.table-waypoint {
+  padding: 0;
+}
+
 @media screen and (max-width: 600px) {
   .side-menu-backdrop {
     z-index: 21;

@@ -14,7 +14,6 @@ const StockChart = () => {
 
   useEffect(() => {
     const ctx = document.getElementById('stock-chart');
-    // if (chart === null) return;
     new Chart(ctx, {
       type: 'line',
       data: {
@@ -24,10 +23,8 @@ const StockChart = () => {
             yAxisID: 'Price',
             backgroundColor: '#0099F7',
             borderColor: '#0099F7',
-            // fill: false,
             data: chart && chart,
             pointRadius: 0,
-            // lineTension: 0,
             borderWidth: 1.5,
           },
         ],

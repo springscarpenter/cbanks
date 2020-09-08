@@ -4,10 +4,13 @@ import {
   selectExchanges,
   fetchExchanges,
 } from '../features/exchanges/exchangesSlice';
+import { selectView } from '../features/view/viewSlice';
 import ExchangeGrid from '../components/exchanges/ExchangeGrid';
+import ExchangeTable from '../components/exchanges/ExchangeTable';
 
 const Exchanges = () => {
   const exchanges = useSelector(selectExchanges);
+  const gridView = useSelector(selectView);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +18,7 @@ const Exchanges = () => {
     //eslint-disable-next-line
   }, []);
 
-  return <ExchangeGrid />;
+  return gridView ? <ExchangeGrid /> : <ExchangeTable />;
 };
 
 export default Exchanges;

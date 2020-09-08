@@ -1,7 +1,7 @@
-import React, { useEffect, Fragment } from "react";
-import { useSelector } from "react-redux";
-import { selectFiatChart } from "../../features/fiatCurrency/fiatCurrencySlice";
-import Chart from "chart.js";
+import React, { useEffect, Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { selectFiatChart } from '../../features/fiatCurrency/fiatCurrencySlice';
+import Chart from 'chart.js';
 
 const vw = Math.max(
   document.documentElement.clientWidth || 0,
@@ -13,21 +13,18 @@ const FiatChart = () => {
   const chart = useSelector(selectFiatChart);
 
   useEffect(() => {
-    const ctx = document.getElementById("fiat-chart");
-    if (chart === null) return;
+    const ctx = document.getElementById('fiat-chart');
     new Chart(ctx, {
-      type: "line",
+      type: 'line',
       data: {
         datasets: [
           {
-            label: "Price",
-            yAxisID: "Price",
-            backgroundColor: "#0099F7",
-            borderColor: "#0099F7",
-            // fill: false,
+            label: 'Price',
+            yAxisID: 'Price',
+            backgroundColor: '#0099F7',
+            borderColor: '#0099F7',
             data: chart && chart.data,
             pointRadius: 0,
-            // lineTension: 0,
             borderWidth: 1.5,
           },
         ],
@@ -40,45 +37,45 @@ const FiatChart = () => {
           animationDuration: 0,
         },
         responsiveAnimationDuration: 0,
-        legend: { position: "bottom", labels: { boxWidth: 12 } },
+        legend: { position: 'bottom', labels: { boxWidth: 12 } },
         scales: {
           xAxes: [
             {
-              type: "time",
-              distribution: "series",
+              type: 'time',
+              distribution: 'series',
               offset: true,
               display: !isMobile,
               ticks: {
                 major: {
                   enabled: true,
-                  fontStyle: "bold",
+                  fontStyle: 'bold',
                 },
-                source: "data",
+                source: 'data',
                 autoSkip: true,
                 autoSkipPadding: 70,
                 maxRotation: 0,
                 sampleSize: 10,
               },
               time: {
-                parser: "MM/DD/YYYY",
-                tooltipFormat: "ll",
+                parser: 'MM/DD/YYYY',
+                tooltipFormat: 'll',
               },
               scaleLabel: {
                 display: true,
-                labelString: "Date",
+                labelString: 'Date',
               },
             },
           ],
           yAxes: [
             {
-              id: "Price",
+              id: 'Price',
               display: !isMobile,
               gridLines: {
                 drawBorder: false,
               },
               scaleLabel: {
                 display: true,
-                labelString: "Price ($)",
+                labelString: 'Price ($)',
               },
               ticks: {
                 callback: (value, index, values) => {
@@ -90,12 +87,12 @@ const FiatChart = () => {
         },
         tooltips: {
           intersect: false,
-          mode: "index",
+          mode: 'index',
           callbacks: {
             label: (tooltipItem, myData) => {
-              let label = myData.datasets[tooltipItem.datasetIndex].label || "";
+              let label = myData.datasets[tooltipItem.datasetIndex].label || '';
               if (label) {
-                label += ": ";
+                label += ': ';
               }
               label += parseFloat(tooltipItem.value).toLocaleString(undefined, {
                 minimumFractionDigits: 2,

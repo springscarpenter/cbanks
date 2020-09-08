@@ -11,6 +11,7 @@ import {
 import CryptoProfile from '../components/cryptocurrency/CryptoProfile';
 import CryptoMarketData from '../components/cryptocurrency/CryptoMarketData';
 import Loader from '../components/utils/Loader';
+import NotFound from '../components/utils/NotFound';
 import PropTypes from 'prop-types';
 
 const Cryptocurrency = ({ match }) => {
@@ -29,7 +30,7 @@ const Cryptocurrency = ({ match }) => {
 
   if (loading) return <Loader />;
 
-  if (profile === null) return <div>Not Found...</div>;
+  if (profile === null) return <NotFound />;
 
   return (
     <div className='main-content-container'>

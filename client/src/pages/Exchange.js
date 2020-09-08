@@ -12,6 +12,7 @@ import {
 import ExchangeProfile from '../components/exchange/ExchangeProfile';
 import ExchangeMarketData from '../components/exchange/ExchangeMarketData';
 import Loader from '../components/utils/Loader';
+import NotFound from '../components/utils/NotFound';
 import PropTypes from 'prop-types';
 
 const Exchange = ({ match }) => {
@@ -31,7 +32,7 @@ const Exchange = ({ match }) => {
 
   if (loading) return <Loader />;
 
-  if (profile === null) return <div>Not Found</div>;
+  if (profile === null) return <NotFound />;
 
   return (
     <div className='main-content-container'>

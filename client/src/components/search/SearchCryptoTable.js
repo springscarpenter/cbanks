@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
   return (
@@ -40,7 +40,7 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })
-                  : "?"}
+                  : '?'}
               </td>
             )}
             {!cryptoResult && (
@@ -48,7 +48,7 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                 className='change-24h'
                 style={{
                   color:
-                    crypto.price_change_percentage_24h > 0 ? "green" : "red",
+                    crypto.price_change_percentage_24h > 0 ? 'green' : 'red',
                 }}
               >
                 {crypto.price_change_percentage_24h
@@ -59,7 +59,7 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                         maximumFractionDigits: 2,
                       }
                     )
-                  : "?"}
+                  : '?'}
                 %
               </td>
             )}
@@ -68,7 +68,9 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                 className='change-7d'
                 style={{
                   color:
-                    crypto.price_change_percentage_24h > 0 ? "green" : "red",
+                    crypto.price_change_percentage_7d_in_currency > 0
+                      ? 'green'
+                      : 'red',
                 }}
               >
                 {crypto.price_change_percentage_7d_in_currency
@@ -79,7 +81,7 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                         maximumFractionDigits: 2,
                       }
                     )
-                  : "?"}
+                  : '?'}
                 %
               </td>
             )}
@@ -90,7 +92,7 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                   ? crypto.total_volume.toLocaleString(undefined, {
                       maximumFractionDigits: 0,
                     })
-                  : "?"}
+                  : '?'}
               </td>
             )}
             {!cryptoResult && (
@@ -100,7 +102,7 @@ const SearchCryptoTable = ({ cryptoDefault, cryptoResult }) => {
                   ? crypto.market_cap.toLocaleString(undefined, {
                       maximumFractionDigits: 0,
                     })
-                  : "?"}
+                  : '?'}
               </td>
             )}
           </tr>

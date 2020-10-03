@@ -79,7 +79,9 @@ const CryptoTable = () => {
                 className='change-7d'
                 style={{
                   color:
-                    crypto.price_change_percentage_24h > 0 ? 'green' : 'red',
+                    crypto.price_change_percentage_7d_in_currency > 0
+                      ? 'green'
+                      : 'red',
                 }}
               >
                 {crypto.price_change_percentage_7d_in_currency

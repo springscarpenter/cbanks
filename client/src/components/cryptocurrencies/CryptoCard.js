@@ -10,7 +10,7 @@ const CryptoCard = ({ crypto }) => {
     name,
     image,
     current_price,
-    price_change_percentage_7d_in_currency,
+    price_change_percentage_24h,
   } = crypto;
 
   return (
@@ -34,18 +34,14 @@ const CryptoCard = ({ crypto }) => {
           </span>
           <span
             style={{
-              color:
-                price_change_percentage_7d_in_currency > 0 ? 'green' : 'red',
+              color: price_change_percentage_24h > 0 ? 'green' : 'red',
             }}
           >
-            {price_change_percentage_7d_in_currency &&
-              `${price_change_percentage_7d_in_currency.toLocaleString(
-                undefined,
-                {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }
-              )}%`}
+            {price_change_percentage_24h &&
+              `${price_change_percentage_24h.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}%`}
           </span>
         </div>
       </div>

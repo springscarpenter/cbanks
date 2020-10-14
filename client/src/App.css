@@ -237,6 +237,9 @@ input::placeholder {
   height: 100vh;
   padding-bottom: 1rem;
   background-color: var(--main-bg-color);
+}
+
+.side-menu:hover {
   overflow-y: scroll;
 }
 
@@ -716,7 +719,7 @@ input::placeholder {
 }
 
 @media screen and (max-width: 850px) {
-  .change-24h,
+  .change-7d,
   .volume-24h-btc-normalized,
   .ticker-last-traded {
     display: none;
@@ -768,6 +771,7 @@ input::placeholder {
   }
   .side-menu {
     z-index: 22;
+    overflow-y: scroll;
   }
   .main-content {
     margin-top: 0;

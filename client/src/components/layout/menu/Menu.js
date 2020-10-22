@@ -66,6 +66,18 @@ const Menu = () => {
               </Link>
             </li>
             <li>
+              <Link to='/registry'>
+                <div
+                  className={
+                    pathname.startsWith('/registry') ? 'active' : undefined
+                  }
+                >
+                  <i className='material-icons-outlined'>policy</i>
+                  <span>Cryptoasset Registry</span>
+                </div>
+              </Link>
+            </li>
+            <li>
               <Link to='/cryptocurrencies'>
                 <div
                   className={

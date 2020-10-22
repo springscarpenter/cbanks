@@ -25,6 +25,7 @@
     0 10px 10px rgba(0, 0, 0, 0.22);
   --fiat-symbol-bg-color: #212529;
   --darkmode-table-border-color: rgba(255, 255, 255, 0.1);
+  --darkmode-swagger-accent-color: #61affe;
 }
 
 /* CSS Reset */
@@ -645,6 +646,37 @@ input::placeholder {
   width: 2rem;
 }
 
+/* swagger */
+.swagger-ui .wrapper {
+  max-width: calc(100vw - 1rem);
+}
+
+.swagger-ui .info {
+  margin: 0 0 50px;
+}
+
+.swagger-ui .scheme-container,
+.swagger-ui section.models .model-container {
+  background: var(--search-box-bg-color);
+}
+
+.swagger-ui select {
+  background-color: var(--main-bg-color);
+}
+
+.swagger-ui .opblock .opblock-summary-path {
+  min-width: 80px;
+}
+
+.swagger-ui .curl-command .copy-to-clipboard {
+  display: grid;
+  place-items: center;
+}
+
+.swagger-ui .response-col_links {
+  display: none;
+}
+
 @media screen and (max-width: 1500px) {
   .main-content-container,
   .chart,
@@ -836,6 +868,12 @@ input::placeholder {
     font-size: 0.7rem;
     padding: 0.2rem 0.4rem;
   }
+  .swagger-ui .responses-inner {
+    padding: 20px 10px;
+  }
+  .swagger-ui .responses-table {
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -894,17 +932,28 @@ body.darkmode,
 .darkmode .side-menu .subheader,
 .darkmode .site-description,
 .darkmode .stock-input,
-.darkmode .chart-buttons button {
+.darkmode .chart-buttons button,
+.darkmode .swagger-ui,
+.darkmode .swagger-ui *,
+.darkmode .swagger-ui .info .title,
+.darkmode .swagger-ui .info p,
+.darkmode .swagger-ui .opblock .opblock-summary-description,
+.darkmode .swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock .opblock-section-header h4,
+.darkmode .swagger-ui .responses-inner h4 {
   color: var(--darkmode-text-primary-color);
 }
 
-.darkmode .main-header {
+.darkmode .main-header,
+.darkmode .swagger-ui .opblock .opblock-section-header {
   background-color: var(--header-darkmode-bg-color);
   border-bottom-color: var(--header-darkmode-bg-color);
 }
 
 body.darkmode,
-.darkmode .side-menu {
+.darkmode .side-menu,
+.darkmode .swagger-ui select,
+.darkmode .swagger-ui input {
   background-color: var(--darkmode-bg-color);
 }
 
@@ -935,6 +984,16 @@ body.darkmode,
 
 .darkmode .main-table tr {
   border-bottom-color: var(--darkmode-table-border-color);
+}
+
+.darkmode .swagger-ui select,
+.darkmode .swagger-ui input,
+.darkmode .swagger-ui table thead tr td {
+  border-color: var(--darkmode-swagger-accent-color);
+}
+
+.darkmode .swagger-ui .prop-type {
+  color: var(--darkmode-swagger-accent-color);
 }
 
 @media screen and (max-width: 600px) {

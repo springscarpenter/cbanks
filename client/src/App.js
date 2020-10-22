@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import CentralBanks from './pages/CentralBanks';
 import FiatCurrencies from './pages/FiatCurrencies';
 import FiatCurrency from './pages/FiatCurrency';
+import Registry from './pages/Registry';
 import Cryptocurrencies from './pages/Cryptocurrencies';
 import Cryptocurrency from './pages/Cryptocurrency';
 import Exchanges from './pages/Exchanges';
@@ -20,6 +21,7 @@ import Header from './components/layout/header/Header';
 import Menu from './components/layout/menu/Menu';
 import { initData } from './features/search/searchSlice';
 import Disclaimer from './components/utils/Disclaimer';
+import 'swagger-ui-react/swagger-ui.css';
 import './App.css';
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
             <Route exact path='/central-banks' component={CentralBanks} />
             <Route exact path='/fiat-currencies' component={FiatCurrencies} />
             <Route exact path='/fiat-currencies/:id' component={FiatCurrency} />
+            <Route exact path='/registry' component={Registry} />
             <Route
               exact
               path='/cryptocurrencies'

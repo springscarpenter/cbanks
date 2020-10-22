@@ -208,7 +208,7 @@ const Spec = {
             required: true,
             unique: true,
             minlength: 46,
-            example: 'CBCID985b274fCBCC045EEFcE54e47dCd7455545B7430ETH',
+            example: 'CBCID98...ETH',
           },
           symbol: {
             type: 'string',

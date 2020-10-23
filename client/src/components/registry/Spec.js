@@ -15,7 +15,7 @@ const Spec = {
   },
   externalDocs: {
     description: 'Register your cryptoasset here',
-    url: 'https://www.google.com',
+    url: 'https://forms.gle/JyfyjoRW3ZPsEHfT6',
   },
   servers: [
     {

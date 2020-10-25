@@ -107,56 +107,18 @@ export const search = (text) => (dispatch) => {
 
 export const initData = () => async (dispatch) => {
   try {
-    const res = await axios.get(
-      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=7d'
-    );
-    const cryptoData = res.data.map((crypto) => ({
-      id: crypto.id,
-      market_cap_rank: crypto.market_cap_rank,
-      symbol: crypto.symbol,
-      name: crypto.name,
-      image: crypto.image,
-      total_volume: crypto.total_volume,
-      market_cap: crypto.market_cap,
-      current_price: crypto.current_price,
-      price_change_percentage_24h: crypto.price_change_percentage_24h,
-      price_change_percentage_7d_in_currency:
-        crypto.price_change_percentage_7d_in_currency,
-    }));
-    dispatch(initCrypto(cryptoData));
-  } catch (err) {
-    console.log(err.message);
-  }
-  try {
-    const res2 = await axios.get(
-      `https://api.coingecko.com/api/v3/exchanges?per_page=10&page=1`
-    );
-    const exchangeData = res2.data.map((exchange) => ({
-      id: exchange.id,
-      name: exchange.name,
-      country: exchange.country,
-      image: exchange.image,
-      trust_score_rank: exchange.trust_score_rank,
-      trade_volume_24h_btc: exchange.trade_volume_24h_btc,
-      trade_volume_24h_btc_normalized: exchange.trade_volume_24h_btc_normalized,
-    }));
-    dispatch(initExchange(exchangeData));
-  } catch (err) {
-    console.log(err.message);
-  }
-  const fiatDefaultList = [
-    'BRL',
-    'CAD',
-    'CNY',
-    'EUR',
-    'GBP',
-    'INR',
-    'JPY',
-    'KRW',
-    'MYR',
-    'RUB',
-  ];
-  try {
+    const fiatDefaultList = [
+      'BRL',
+      'CAD',
+      'CNY',
+      'EUR',
+      'GBP',
+      'INR',
+      'JPY',
+      'KRW',
+      'MYR',
+      'RUB',
+    ];
     dispatch(
       initFiat(
         fiatDefaultList.map((fiat) => {
@@ -171,16 +133,46 @@ export const initData = () => async (dispatch) => {
         })
       )
     );
+
+    const [res1, res2, res3] = await Promise.all([
+      axios.get(
+        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=7d'
+      ),
+      axios.get(
+        `https://api.coingecko.com/api/v3/exchanges?per_page=10&page=1`
+      ),
+      axios.get('https://api.exchangeratesapi.io/latest?base=USD'),
+    ]);
+
+    const cryptoData = res1.data.map((crypto) => ({
+      id: crypto.id,
+      market_cap_rank: crypto.market_cap_rank,
+      symbol: crypto.symbol,
+      name: crypto.name,
+      image: crypto.image,
+      total_volume: crypto.total_volume,
+      market_cap: crypto.market_cap,
+      current_price: crypto.current_price,
+      price_change_percentage_24h: crypto.price_change_percentage_24h,
+      price_change_percentage_7d_in_currency:
+        crypto.price_change_percentage_7d_in_currency,
+    }));
+    dispatch(initCrypto(cryptoData));
+
+    const exchangeData = res2.data.map((exchange) => ({
+      id: exchange.id,
+      name: exchange.name,
+      country: exchange.country,
+      image: exchange.image,
+      trust_score_rank: exchange.trust_score_rank,
+      trade_volume_24h_btc: exchange.trade_volume_24h_btc,
+      trade_volume_24h_btc_normalized: exchange.trade_volume_24h_btc_normalized,
+    }));
+    dispatch(initExchange(exchangeData));
+
+    dispatch(initRates(res3.data.rates));
   } catch (err) {
-    console.log(err.message);
-  }
-  try {
-    const res = await axios.get(
-      'https://api.exchangeratesapi.io/latest?base=USD'
-    );
-    dispatch(initRates(res.data.rates));
-  } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
   dispatch(setLoading(false));
 };

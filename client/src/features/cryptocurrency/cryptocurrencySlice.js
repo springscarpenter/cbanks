@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import profileDB from '../../db/profileDB';
+import supplyDB from '../../db/supplyDB';
 
 export const cryptocurrencySlice = createSlice({
   name: 'cryptocurrency',
@@ -50,11 +52,13 @@ export const {
 
 export const fetchCryptoProfile = (id) => async (dispatch) => {
   dispatch(setID(id));
+  let profile;
+  let tickers = [];
   try {
     const res = await axios.get(
       `https://api.coingecko.com/api/v3/coins/${id}?localization=false&community_data=false&developer_data=false&include_exchange_logo=true`
     );
-    const profile = {
+    profile = {
       id: res.data.id,
       symbol: res.data.symbol,
       name: res.data.name,
@@ -86,10 +90,10 @@ export const fetchCryptoProfile = (id) => async (dispatch) => {
         res.data.market_data.price_change_percentage_24h,
       price_change_percentage_7d:
         res.data.market_data.price_change_percentage_7d,
-      circulating_supply: res.data.market_data.circulating_supply,
+      circulating_supply:
+        res.data.market_data.circulating_supply || supplyDB[id],
     };
-    dispatch(fetchProfile(profile));
-    const tickers = res.data.tickers.map((ticker) => ({
+    tickers = res.data.tickers.map((ticker) => ({
       base: ticker.base,
       target: ticker.target,
       exchange: ticker.market.name,
@@ -101,11 +105,57 @@ export const fetchCryptoProfile = (id) => async (dispatch) => {
       last_traded_at: ticker.last_traded_at,
       trade_url: ticker.trade_url,
     }));
-    dispatch(fetchTickers(tickers));
   } catch (err) {
     console.log(err.message);
+    if (!profileDB[id]) return;
+    profile = profileDB[id].profile;
+    const exchanges = profileDB[id].exchanges;
+    try {
+      const res1 = await axios.get(
+        `https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true`
+      );
+      const { usd, usd_market_cap, usd_24h_vol, usd_24h_change } = res1.data[
+        id
+      ];
+      profile = {
+        ...profile,
+        current_price: usd,
+        market_cap: usd_market_cap,
+        total_volume: usd_24h_vol,
+        price_change_percentage_24h: usd_24h_change,
+      };
+
+      if (exchanges.length === 0) return;
+      const promises = exchanges.map((ex) =>
+        axios.get(
+          `https://api.coingecko.com/api/v3/exchanges/${ex}/tickers?coin_ids=${id}&include_exchange_logo=true&page=1&order=volume_desc`
+        )
+      );
+      const resArr = await Promise.all(promises);
+      resArr.forEach((r) => {
+        r.data.tickers.forEach((t) =>
+          tickers.push({
+            base: t.base,
+            target: t.target,
+            exchange: t.market.name,
+            exchange_id: t.market.identifier,
+            exchange_logo: t.market.logo,
+            price: t.converted_last.usd,
+            volume: t.converted_volume.usd,
+            spread: t.bid_ask_spread_percentage,
+            last_traded_at: t.last_traded_at,
+            trade_url: t.trade_url,
+          })
+        );
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  } finally {
+    dispatch(fetchProfile(profile));
+    dispatch(fetchTickers(tickers));
+    dispatch(setLoading(false));
   }
-  dispatch(setLoading(false));
 };
 
 export const fetchCryptoChart = (id, range) => async (dispatch) => {

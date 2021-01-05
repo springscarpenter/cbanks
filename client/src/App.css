@@ -266,7 +266,7 @@ input::placeholder {
 }
 
 .side-menu:hover {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .side-menu a {
@@ -845,7 +845,7 @@ input::placeholder {
   }
   .side-menu {
     z-index: 22;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .main-content {
     margin-top: 0;

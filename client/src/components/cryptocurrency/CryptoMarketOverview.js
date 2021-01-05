@@ -1,7 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectCryptoProfile } from "../../features/cryptocurrency/cryptocurrencySlice";
-import supplyDB from "../../db/supplyDB";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCryptoProfile } from '../../features/cryptocurrency/cryptocurrencySlice';
 
 const CryptoMarketOverview = () => {
   const {
@@ -20,7 +19,6 @@ const CryptoMarketOverview = () => {
     price_change_percentage_7d,
     circulating_supply,
     current_price,
-    id,
   } = useSelector(selectCryptoProfile);
 
   return (
@@ -29,15 +27,15 @@ const CryptoMarketOverview = () => {
         <span>Market Cap</span>
         <span>
           $
-          {supplyDB[id]
-            ? (supplyDB[id] * current_price).toLocaleString(undefined, {
-                maximumFractionDigits: 0,
-              })
-            : market_cap
+          {market_cap
             ? market_cap.toLocaleString(undefined, {
                 maximumFractionDigits: 0,
               })
-            : "?"}
+            : circulating_supply && current_price
+            ? (circulating_supply * current_price).toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+              })
+            : '?'}
         </span>
       </div>
       <div>
@@ -48,7 +46,7 @@ const CryptoMarketOverview = () => {
             ? total_volume.toLocaleString(undefined, {
                 maximumFractionDigits: 0,
               })
-            : "?"}
+            : '?'}
         </span>
       </div>
       <div>
@@ -60,28 +58,24 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}{" "}
+            : '?'}{' '}
           / $
           {high_24h
             ? high_24h.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
         </span>
       </div>
       <div>
         <span>Circulating Supply</span>
         <span>
-          {supplyDB[id]
-            ? supplyDB[id].toLocaleString(undefined, {
-                maximumFractionDigits: 0,
-              })
-            : circulating_supply
+          {circulating_supply
             ? circulating_supply.toLocaleString(undefined, {
                 maximumFractionDigits: 0,
               })
-            : "?"}{" "}
+            : '?'}{' '}
           {symbol && symbol.toUpperCase()}
         </span>
       </div>
@@ -89,7 +83,7 @@ const CryptoMarketOverview = () => {
         <span>24h Change</span>
         <span
           style={{
-            color: price_change_percentage_24h > 0 ? "green" : "red",
+            color: price_change_percentage_24h > 0 ? 'green' : 'red',
           }}
         >
           {price_change_percentage_24h
@@ -97,7 +91,7 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
           %
         </span>
       </div>
@@ -105,7 +99,7 @@ const CryptoMarketOverview = () => {
         <span>7d Change</span>
         <span
           style={{
-            color: price_change_percentage_7d > 0 ? "green" : "red",
+            color: price_change_percentage_7d > 0 ? 'green' : 'red',
           }}
         >
           {price_change_percentage_7d
@@ -113,7 +107,7 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
           %
         </span>
       </div>
@@ -126,11 +120,11 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
         </span>
         <span
           style={{
-            color: ath_change_percentage > 0 ? "green" : "red",
+            color: ath_change_percentage > 0 ? 'green' : 'red',
           }}
         >
           {ath_change_percentage
@@ -138,7 +132,7 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
           %
         </span>
         {ath_date && <small>{new Date(ath_date).toDateString()}</small>}
@@ -152,11 +146,11 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
         </span>
         <span
           style={{
-            color: atl_change_percentage > 0 ? "green" : "red",
+            color: atl_change_percentage > 0 ? 'green' : 'red',
           }}
         >
           {atl_change_percentage
@@ -164,7 +158,7 @@ const CryptoMarketOverview = () => {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            : "?"}
+            : '?'}
           %
         </span>
         {atl_date && <small>{new Date(atl_date).toDateString()}</small>}

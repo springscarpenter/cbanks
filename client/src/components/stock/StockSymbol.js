@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectStockSymbol,
   fetchStockData,
-} from "../../features/stock/stockSlice";
+} from '../../features/stock/stockSlice';
 
 const StockSymbol = () => {
   const defaultSymbol = useSelector(selectStockSymbol);
   const dispatch = useDispatch();
   const [symbol, setSymbol] = useState(defaultSymbol);
   const onKeyUp = (e) => {
-    if (symbol && e.key === "Enter") dispatch(fetchStockData(symbol));
+    if (symbol && e.key === 'Enter') dispatch(fetchStockData(symbol));
   };
 
   return (
@@ -21,6 +21,7 @@ const StockSymbol = () => {
         value={symbol}
         onChange={(e) => setSymbol(e.target.value.toUpperCase())}
         onKeyUp={onKeyUp}
+        autoFocus
       />
       <div>
         <a

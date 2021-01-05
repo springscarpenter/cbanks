@@ -1,9 +1,9 @@
-import React from "react";
-import CurrentPrice from "./CurrentPrice";
-import CryptoMarketOverview from "./CryptoMarketOverview";
-import CryptoChartButtons from "./CryptoChartButtons";
-import CryptoChart from "./CryptoChart";
-import CryptoTickers from "./CryptoTickers";
+import React from 'react';
+import CurrentPrice from './CurrentPrice';
+import CryptoMarketOverview from './CryptoMarketOverview';
+import CryptoChartButtons from './CryptoChartButtons';
+import CryptoChart from './CryptoChart';
+import CryptoTickers from './CryptoTickers';
 
 const CryptoMarketData = () => {
   return (

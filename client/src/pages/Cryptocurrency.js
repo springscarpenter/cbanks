@@ -30,7 +30,7 @@ const Cryptocurrency = ({ match }) => {
 
   if (loading) return <Loader />;
 
-  if (profile === null) return <NotFound />;
+  if (!profile) return <NotFound />;
 
   return (
     <div className='main-content-container'>

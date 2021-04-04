@@ -346,6 +346,10 @@ input::placeholder {
   color: var(--foundation-color);
 }
 
+.side-menu .disclaimer {
+  text-transform: none;
+}
+
 /* Main Content */
 .main-content {
   display: flex;

@@ -250,6 +250,13 @@ const Menu = () => {
           <div className='subheader foundation'>
             <span>Managed by Central Banks Foundation, BS</span>
           </div>
+          <div className='subheader disclaimer'>
+            <span>
+              Disclaimer: Information provided on this site may contain
+              inaccuracies and/or discrepancies with real-time data. Use of
+              content is solely at your own risk and discretion.
+            </span>
+          </div>
         </nav>
       </aside>
     </Fragment>

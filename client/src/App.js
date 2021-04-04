@@ -20,7 +20,7 @@ import StockMarket from './pages/StockMarket';
 import Header from './components/layout/header/Header';
 import Menu from './components/layout/menu/Menu';
 import { initData } from './features/search/searchSlice';
-import Disclaimer from './components/utils/Disclaimer';
+// import Disclaimer from './components/utils/Disclaimer';
 import 'swagger-ui-react/swagger-ui.css';
 import './App.css';
 
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <Router>
-      <Disclaimer />
+      {/* <Disclaimer /> */}
       <Header />
       <Menu />
       <main className='main-content'>

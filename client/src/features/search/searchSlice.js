@@ -141,7 +141,8 @@ export const initData = () => async (dispatch) => {
       axios.get(
         `https://api.coingecko.com/api/v3/exchanges?per_page=10&page=1`
       ),
-      axios.get('https://api.exchangeratesapi.io/latest?base=USD'),
+      axios.get('https://api.exchangerate.host/latest?base=USD'),
+      // axios.get('https://api.exchangeratesapi.io/latest?base=USD'),
     ]);
 
     const cryptoData = res1.data.map((crypto) => ({

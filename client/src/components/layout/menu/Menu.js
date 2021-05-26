@@ -155,13 +155,14 @@ const Menu = () => {
             </li>
             <li>
               <a
-                href='https://exchangeratesapi.io/'
+                href='https://exchangerate.host'
+                // href='https://exchangeratesapi.io/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 <div>
                   <i className='material-icons-outlined'>link</i>
-                  <span>Exchangeratesapi</span>
+                  <span>Exchangerate.host</span>
                 </div>
               </a>
             </li>

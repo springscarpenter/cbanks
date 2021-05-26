@@ -36,17 +36,17 @@ export const {
 export const fetchFiat = (id) => async (dispatch) => {
   try {
     const date = new Date();
-    const today =
-      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const today = year + '-' + (month < 10 ? '0' + month : month) + '-' + day;
     const lastYear =
-      date.getFullYear() -
-      1 +
-      '-' +
-      (date.getMonth() + 1) +
-      '-' +
-      date.getDate();
+      year - 1 + '-' + (month < 10 ? '0' + month : month) + '-' + day;
+    // const res = await axios.get(
+    //   `https://api.exchangeratesapi.io/history?start_at=${lastYear}&end_at=${today}&symbols=USD&base=${id}`
+    // );
     const res = await axios.get(
-      `https://api.exchangeratesapi.io/history?start_at=${lastYear}&end_at=${today}&symbols=USD&base=${id}`
+      `https://api.exchangerate.host/timeseries?start_date=${lastYear}&end_date=${today}&symbols=USD&base=${id}`
     );
     const chartData = Object.keys(res.data.rates).map((key) => ({
       x: new Date(key).getTime(),

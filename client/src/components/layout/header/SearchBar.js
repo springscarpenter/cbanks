@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   search,
   resetSearch,
   setLoading,
 } from '../../../features/search/searchSlice';
-import PropTypes from 'prop-types';
 
-const SearchBar = ({ history }) => {
+const SearchBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isFocused, setFocused] = useState(false);
   const [text, setText] = useState('');
@@ -17,7 +17,7 @@ const SearchBar = ({ history }) => {
   const searchText = (input) => {
     if (input.length >= 3) {
       dispatch(setLoading(true));
-      history.push('/');
+      navigate('/');
       dispatch(search(input));
       setFocused(false);
     }
@@ -62,8 +62,4 @@ const SearchBar = ({ history }) => {
   );
 };
 
-SearchBar.propTypes = {
-  history: PropTypes.object.isRequired,
-};
-
-export default withRouter(SearchBar);
+export default SearchBar;

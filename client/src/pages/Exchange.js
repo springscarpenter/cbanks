@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectExchangeProfile,
@@ -13,9 +14,9 @@ import ExchangeProfile from '../components/exchange/ExchangeProfile';
 import ExchangeMarketData from '../components/exchange/ExchangeMarketData';
 import Loader from '../components/utils/Loader';
 import NotFound from '../components/utils/NotFound';
-import PropTypes from 'prop-types';
 
-const Exchange = ({ match }) => {
+const Exchange = () => {
+  const params = useParams();
   const profile = useSelector(selectExchangeProfile);
   const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
@@ -24,9 +25,9 @@ const Exchange = ({ match }) => {
     window.scrollTo(0, 0);
     dispatch(resetDetails());
     dispatch(setLoading(true));
-    dispatch(fetchExchangeProfile(match.params.id));
-    dispatch(fetchExchangeChart(match.params.id, '14'));
-    dispatch(fetchExchangeTickers(match.params.id));
+    dispatch(fetchExchangeProfile(params.id));
+    dispatch(fetchExchangeChart(params.id, '14'));
+    dispatch(fetchExchangeTickers(params.id));
     // eslint-disable-next-line
   }, []);
 
@@ -38,14 +39,10 @@ const Exchange = ({ match }) => {
     <div className='main-content-container'>
       <div className='details'>
         <ExchangeProfile />
-        <ExchangeMarketData exchange_id={match.params.id} />
+        <ExchangeMarketData exchange_id={params.id} />
       </div>
     </div>
   );
-};
-
-Exchange.propTypes = {
-  match: PropTypes.object.isRequired,
 };
 
 export default Exchange;

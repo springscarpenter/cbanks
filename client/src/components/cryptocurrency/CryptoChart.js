@@ -5,7 +5,9 @@ import {
   selectCryptoChartRange,
 } from '../../features/cryptocurrency/cryptocurrencySlice';
 import { selectTheme } from '../../features/theme/themeSlice';
-import Chart from 'chart.js';
+import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
+import { enUS } from 'date-fns/locale';
 
 const vw = Math.max(
   document.documentElement.clientWidth || 0,
@@ -22,18 +24,17 @@ const CryptoChart = () => {
 
   useEffect(() => {
     const newChartInstance = new Chart(chartCanvas.current, {
-      type: 'line',
       data: {
         datasets: [
           {
+            type: 'line',
             label: 'Price',
             yAxisID: 'Price',
             backgroundColor: '#0099F7',
             borderColor: '#0099F7',
-            fill: false,
             data: chart && chart.prices,
             pointRadius: 0,
-            lineTension: 0,
+            tension: 0,
             borderWidth: 1.5,
           },
           {
@@ -43,107 +44,94 @@ const CryptoChart = () => {
             backgroundColor: '#2fcbaf',
             borderColor: '#2fcbaf',
             data: chart && chart.total_volumes,
-            fill: false,
             pointRadius: 0,
-            lineTension: 0,
+            tension: 0,
             borderWidth: 1,
+            barThickness: 'flex',
           },
         ],
       },
       options: {
-        animation: {
-          duration: 0,
-        },
-        hover: {
-          animationDuration: 0,
-        },
-        responsiveAnimationDuration: 0,
-        legend: { position: 'bottom', labels: { boxWidth: 12 } },
+        animation: false,
         scales: {
-          xAxes: [
-            {
-              type: 'time',
-              distribution: 'series',
-              offset: true,
-              display: !isMobile,
-              ticks: {
-                major: {
-                  enabled: true,
-                  fontStyle: 'bold',
-                },
-                source: 'data',
-                autoSkip: true,
-                autoSkipPadding: 70,
-                maxRotation: 0,
-                sampleSize: 10,
-              },
-              time: {
-                parser: 'MM/DD/YYYY',
-                tooltipFormat: 'll',
-              },
-              scaleLabel: {
-                display: true,
-                labelString: 'Date',
+          xAxis: {
+            type: 'timeseries',
+            adapters: {
+              date: {
+                locale: enUS,
               },
             },
-          ],
-          yAxes: [
-            {
-              id: 'Price',
-              display: !isMobile,
-              gridLines: {
-                drawBorder: false,
+            offset: true,
+            display: !isMobile,
+            ticks: {
+              major: {
+                enabled: true,
+                // fontStyle: 'bold',
               },
-              scaleLabel: {
-                display: true,
-                labelString: 'Price ($)',
-              },
-              ticks: {
-                callback: (value, index, values) => {
-                  return value.toLocaleString();
-                },
-              },
+              source: 'data',
+              autoSkip: true,
+              autoSkipPadding: 70,
+              maxRotation: 0,
+              sampleSize: 10,
             },
-
-            {
-              id: 'Volume',
-              display: !isMobile,
-              scaleLabel: {
-                display: true,
-                labelString: 'Volume ($)',
-              },
-              position: 'right',
-              ticks: {
-                callback: (value, index, values) => {
-                  return value.toExponential();
-                },
-              },
-              gridLines: { display: false },
+            time: {
+              parser: 'MM/dd/yyyy',
+              tooltipFormat: 'PP',
             },
-          ],
-        },
-        tooltips: {
-          intersect: false,
-          mode: 'index',
-          callbacks: {
-            label: (tooltipItem, myData) => {
-              let label = myData.datasets[tooltipItem.datasetIndex].label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += parseFloat(tooltipItem.value).toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 5,
-              });
-              return label;
+            title: { display: true, text: 'Date' },
+          },
+          Price: {
+            display: !isMobile,
+            grid: {
+              drawBorder: false,
+            },
+            title: { display: true, text: 'Price ($)' },
+            position: 'left',
+            ticks: {
+              callback: (value, index, values) => {
+                return value.toLocaleString();
+              },
             },
           },
-          xPadding: 10,
-          yPadding: 10,
-          bodySpacing: 5,
-          displayColors: false,
-          titleFontSize: 13,
-          bodyFontSize: 13,
+          Volume: {
+            display: !isMobile,
+            title: { display: true, text: 'Volume ($)' },
+            position: 'right',
+            ticks: {
+              callback: (value, index, values) => {
+                return value.toExponential();
+              },
+            },
+            grid: { display: false },
+          },
+        },
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12 } },
+          tooltip: {
+            intersect: false,
+            mode: 'index',
+            callbacks: {
+              label: (context) => {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                label += parseFloat(context.parsed.y).toLocaleString(
+                  undefined,
+                  {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 5,
+                  }
+                );
+                return label;
+              },
+            },
+            padding: 10,
+            bodySpacing: 5,
+            displayColors: false,
+            titleFont: { size: 13 },
+            bodyFont: { size: 13 },
+          },
         },
       },
     });
@@ -155,9 +143,9 @@ const CryptoChart = () => {
     if (chart && chartInstance) {
       chartInstance.data.datasets[0].data = chart.prices;
       chartInstance.data.datasets[1].data = chart.total_volumes;
-      chartInstance.options.scales.xAxes[0].time.tooltipFormat =
-        range === '1' ? 'lll' : 'll';
-      chartInstance.options.scales.xAxes[0].scaleLabel.labelString =
+      chartInstance.options.scales.xAxis.time.tooltipFormat =
+        range === '1' ? 'PPp' : 'PP';
+      chartInstance.options.scales.xAxis.title.text =
         range === '1' ? 'Time' : 'Date';
       chartInstance.update();
     }

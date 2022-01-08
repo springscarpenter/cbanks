@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFiatChart,
@@ -11,9 +12,9 @@ import FiatProfile from '../components/fiatCurrency/FiatProfile';
 import FiatMarketData from '../components/fiatCurrency/FiatMarketData';
 import Loader from '../components/utils/Loader';
 import NotFound from '../components/utils/NotFound';
-import PropTypes from 'prop-types';
 
-const FiatCurrency = ({ match }) => {
+const FiatCurrency = () => {
+  const params = useParams();
   const chart = useSelector(selectFiatChart);
   const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const FiatCurrency = ({ match }) => {
     window.scrollTo(0, 0);
     dispatch(resetDetails());
     dispatch(setLoading(true));
-    dispatch(fetchFiat(match.params.id));
+    dispatch(fetchFiat(params.id));
     // eslint-disable-next-line
   }, []);
 
@@ -38,10 +39,6 @@ const FiatCurrency = ({ match }) => {
       </div>
     </div>
   );
-};
-
-FiatCurrency.propTypes = {
-  match: PropTypes.object.isRequired,
 };
 
 export default FiatCurrency;

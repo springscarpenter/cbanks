@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectCryptoProfile,
@@ -12,9 +13,9 @@ import CryptoProfile from '../components/cryptocurrency/CryptoProfile';
 import CryptoMarketData from '../components/cryptocurrency/CryptoMarketData';
 import Loader from '../components/utils/Loader';
 import NotFound from '../components/utils/NotFound';
-import PropTypes from 'prop-types';
 
-const Cryptocurrency = ({ match }) => {
+const Cryptocurrency = () => {
+  const params = useParams();
   const profile = useSelector(selectCryptoProfile);
   const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
@@ -23,8 +24,8 @@ const Cryptocurrency = ({ match }) => {
     window.scrollTo(0, 0);
     dispatch(resetDetails());
     dispatch(setLoading(true));
-    dispatch(fetchCryptoProfile(match.params.id));
-    dispatch(fetchCryptoChart(match.params.id, 'max'));
+    dispatch(fetchCryptoProfile(params.id));
+    dispatch(fetchCryptoChart(params.id, 'max'));
     // eslint-disable-next-line
   }, []);
 
@@ -40,10 +41,6 @@ const Cryptocurrency = ({ match }) => {
       </div>
     </div>
   );
-};
-
-Cryptocurrency.propTypes = {
-  match: PropTypes.object.isRequired,
 };
 
 export default Cryptocurrency;
